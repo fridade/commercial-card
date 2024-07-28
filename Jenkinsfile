@@ -4,15 +4,15 @@ pipeline {
 		DOCKERHUB_CREDENTIALS=credentials('docker-cred')
 	}
 
-     stage('clean env') {
+
+    stages {
+        stage('clean env') {
             steps {
                 sh '''
             docker system prune -fa || true
                 '''
             }
         }
-
-    stages {
         
         stage('compile') {
             steps {

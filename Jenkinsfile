@@ -81,7 +81,7 @@ pipeline {
     stage('Push-ui') {
           
             steps {
-               sh 'fridade/comm-card:jenkins-$BUILD_NUMBER'
+               sh 'docker push fridade/comm-card:jenkins-$BUILD_NUMBER'
             }
     }
 

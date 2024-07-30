@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-		DOCKERHUB_CREDENTIALS=credentials('docker-cred')
-	}
+    
 
 
     stages {
@@ -20,12 +18,7 @@ pipeline {
             }
         }
 
-        stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-        }
+        
 
 
 
@@ -59,30 +52,7 @@ pipeline {
     //        }
     //    }
 
-        stage('Build') {
-            steps {
-               sh "mvn package -DskipTests=true"
-            }
-        }
-
-        stage('Build-images') {
-            steps {
-                sh '''
-                   docker build -t  fridade/card-svc:jenkins-$BUILD_NUMBER .
-                '''
-            }
-        }
-        stage('Docker Image Scan') {
-            steps {
-                sh "trivy image --format table -o trivy-image-report.html fridade/card-svc:jenkins-$BUILD_NUMBER "
-            }
-        }
-        stage('Push-ui') {
-          
-            steps {
-               sh 'docker push fridade/card-svc:jenkins-$BUILD_NUMBER'
-            }
-        }
+       
         
 
 
@@ -90,15 +60,6 @@ pipeline {
 
 
    
-   // stage('Build & Tag Docker Image') {
-   //         steps {
-   //            script {
-   //                withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-   //                         sh "docker build -t adijaiswal/boardshack:latest ."
-   //                 }
-   //            }
-   //         }
-   //     }
    
    
    

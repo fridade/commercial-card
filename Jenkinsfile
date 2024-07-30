@@ -65,6 +65,13 @@ pipeline {
 
     }
 
+    stage('Push-ui') {
+          
+            steps {
+               sh 'fridade/comm-card:jenkins-$BUILD_NUMBER'
+            }
+    }
+
 
 
 

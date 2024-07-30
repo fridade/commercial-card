@@ -49,8 +49,24 @@ pipeline {
     //            withSonarQubeEnv('sonar') {
     //                sh "${scannerHome}/bin/sonar-scanner"
     //            }
-    //        }
     //    }
+    stage('Build') {
+            steps {
+               sh "mvn package -DskipTests=true "
+            }
+    
+    }
+    stage('Build-images') {
+            steps {
+                sh '''
+              docker build -t  fridade/comm-card:jenkins-$BUILD_NUMBER .
+                '''
+            }
+
+    }
+
+
+
 
        
         

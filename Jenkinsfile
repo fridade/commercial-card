@@ -95,7 +95,7 @@ pipeline {
 
 	            sh '''
                 rm -rf commercial-card || true 
-                git clone https://github.com/fridade/commercial-card.git
+                git clone https://$TOKEN@github.com/fridade/commercial-card.git
                 cd commercial-card
 cat << EOF > values.yaml
        repository:

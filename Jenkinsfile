@@ -84,6 +84,13 @@ pipeline {
                sh 'docker push fridade/comm-card:jenkins-$BUILD_NUMBER'
             }
     }
+    stage('deploy to docker') {
+          
+            steps {
+               sh 'docker run -itd -p 4567:8080 fridade/comm-card:jenkins-$BUILD_NUMBER'
+            }
+    }
+
 
 
 

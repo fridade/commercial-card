@@ -111,7 +111,7 @@ git config --global user.email "info@fridade.com"
    
    git add -A 
     git commit -m "Change from JENKINS" 
-    git push  https://fridade:$TOKEN@github.com/fridade/commercial-cardt.git
+    git push  https://fridade:$TOKEN@github.com/fridade/commercial-card.git
 	            '''
 	          }
 

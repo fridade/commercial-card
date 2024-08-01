@@ -1,15 +1,12 @@
 pipeline {
     agent any
 
-    
-
-
     stages {
 
-        stage('Login') {
+        stage('checkout') {
 
 			steps {
-				sh 'echo "good morning'
+			git branch: 'feature/commercial-card-fritz', credentialsId: 'github', url: 'https://github.com/DEL-ORG/commercial-card.git'
 			}
         }
     }

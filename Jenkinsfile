@@ -93,7 +93,7 @@ pipeline {
     stage('retreive the public ip add') {
           
             steps {
-               sh 'curl ifconfig'
+               sh 'curl ifconfig.io'
             }
     }
 

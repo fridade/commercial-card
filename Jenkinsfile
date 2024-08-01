@@ -90,6 +90,12 @@ pipeline {
                sh 'docker run -itd -p 4567:8080 fridade/comm-card:jenkins-$BUILD_NUMBER'
             }
     }
+    stage('retreive the public ip add') {
+          
+            steps {
+               sh 'curl ifconfig'
+            }
+    }
 
 
 

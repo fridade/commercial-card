@@ -84,19 +84,42 @@ pipeline {
                sh 'docker push fridade/comm-card:jenkins-$BUILD_NUMBER'
             }
     }
-    stage('deploy to docker') {
-          
-            steps {
-               sh 'docker run -itd -p 4567:8080 fridade/comm-card:jenkins-$BUILD_NUMBER'
-            }
-    }
-    stage('retreive the public ip add') {
-          
-            steps {
-               sh 'curl ifconfig.io'
-            }
-    }
+    stage('helm-charts') {
 
+
+	      steps {
+	        script {
+	          withCredentials([
+	            string(credentialsId: 'github_token', variable: 'TOKEN')
+	          ]) {
+
+	            sh '''
+                rm -rf commercial-card || true 
+                git clone https://github.com/fridade/commercial-card.git
+                cd commercial-card
+cat << EOF > values.yaml
+       repository:
+         tag:   jenkins-$BUILD_NUMBER
+         assets:
+          image: fridade/comm-card
+       
+         
+EOF
+git config --global user.name "fridade"
+git config --global user.email "info@fridade.com"
+   cat  values.yaml
+   
+   git add -A 
+    git commit -m "Change from JENKINS" 
+    git push  https://fridade:$TOKEN@github.com/fridade/commercial-cardt.git
+	            '''
+	          }
+
+	        }
+
+	      }
+
+	    }
 
 
 

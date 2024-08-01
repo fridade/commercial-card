@@ -1,0 +1,7 @@
+repository:
+   tag:   jenkins-$BUILD_NUMBER
+   assets:
+    image: fridade/comm-card
+  
+ 
+       

@@ -1,7 +1,6 @@
-repository:
-   tag:   jenkins-$BUILD_NUMBER
-   assets:
-    image: fridade/comm-card
-  
- 
+       repository:
+         tag:   jenkins-23
+         assets:
+          image: fridade/comm-card
        
+         

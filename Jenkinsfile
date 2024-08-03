@@ -73,10 +73,18 @@ pipeline {
             steps {
                 sh '''
               docker build -t  fridade/comm-card:jenkins-$BUILD_NUMBER .
+
                 '''
             }
 
     }
+    stage('Docker Image Scan') {
+            steps {
+                sh "trivy image --format table -o trivy-image-report.html fridade/comm-card:jenkins-$BUILD_NUMBER "
+            }
+        }
+
+   
 
     stage('Push-ui') {
           
@@ -120,6 +128,9 @@ git config --global user.email "info@fridade.com"
 	      }
 
 	    }
+
+
+      
 
 
 

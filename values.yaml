@@ -1,5 +1,5 @@
        repository:
-         tag:   jenkins-23
+         tag:   jenkins-24
          assets:
           image: fridade/comm-card
        

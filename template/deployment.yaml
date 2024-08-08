@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commercial-card
+  labels:
+    app: commercial-card
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: commercial-card
+  template:
+    metadata:
+      labels:
+        app: commercial-card
+    spec:
+      containers:
+      - name: commercial-card
+        image: "{{ .Values.repository.assets.image }}:{{ .Values.repository.tag }}"
+        ports:
+        - containerPort: 8080

@@ -8,6 +8,6 @@ spec:
     app: commercial-card
   ports:
     - port: 8080
-      targetPort: 4567
+      targetPort: 8080
       
       
